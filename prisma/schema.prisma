@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Dpt {
+  id      BigInt    @id
+  name    String
+  status  DptStatus @default(BELUM_MEMILIH)
+  kelasId Int
+
+  // Relations
+  kelas     Kelas      @relation(fields: [kelasId], references: [id])
+  bilik     Bilik?     @relation("BilikCurrentDpt")
+  perolehan Perolehan?
+}
+
+enum DptStatus {
+  BELUM_MEMILIH
+  DALAM_ANTRIAN
+  DALAM_BILIK
+  SUDAH_MEMILIH
+}
+
+model Kelas {
+  id   Int    @id
+  name String
+
+  // Relations
+  dpt Dpt[]
+}
+
+model Paslon {
+  id      Int    @id
+  image   String
+  ketos   String
+  waketos String
+
+  // Relations
+  perolehan Perolehan[]
+}
+
+model Bilik {
+  id           Int     @id
+  name         String
+  currentDptId BigInt? @unique
+
+  // Relations
+  currentDpt Dpt?        @relation("BilikCurrentDpt", fields: [currentDptId], references: [id])
+  perolehan  Perolehan[]
+}
+
+model Perolehan {
+  id       Int    @id
+  dptId    BigInt @unique
+  bilikId  Int
+  paslonId Int
+
+  // Relations
+  dpt    Dpt    @relation(fields: [dptId], references: [id])
+  bilik  Bilik  @relation(fields: [bilikId], references: [id])
+  paslon Paslon @relation(fields: [paslonId], references: [id])
+}
