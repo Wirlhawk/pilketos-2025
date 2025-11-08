@@ -59,4 +59,3 @@ export function useClientAction<TArgs extends any[], TReturn>(
 
     return { run, loading };
 }
-""

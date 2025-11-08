@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import {
     IconCircleCheckFilled,
     IconRefresh,
-    IconXboxXFilled
+    IconXboxXFilled,
 } from "@tabler/icons-react";
 
 export default function StatusBadge({ status }: { status: DptStatus }) {
@@ -19,7 +19,7 @@ export default function StatusBadge({ status }: { status: DptStatus }) {
     > = {
         BELUM_MEMILIH: {
             icon: <IconXboxXFilled className="w-4 h-4 fill-red-500" />,
-            bg: "bg-orange-500",
+            bg: "bg-red-900",
             text: "text-white",
             darkBg: "dark:bg-yellow-600",
             label: "Belum Memilih",
@@ -49,14 +49,12 @@ export default function StatusBadge({ status }: { status: DptStatus }) {
         },
     };
 
-    const { icon } = mapping[status];
-    const label = status.charAt(0).toUpperCase() + status.slice(1);
+    const { icon, label } = mapping[status];
 
     return (
-        <Badge variant="outline" className={`text-muted-foreground px-1.5`}>
+        <Badge variant="outline" className={`text-muted-foreground px-1.5 `}>
             {icon}
             {label}
         </Badge>
     );
 }
-

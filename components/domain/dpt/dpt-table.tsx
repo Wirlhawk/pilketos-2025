@@ -1,10 +1,10 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { addToAntrian } from "@/action/dpt/add-to-antrian";
-import { Dpt, Kelas } from "@/app/generated/prisma";
+import { addQueue } from "@/action/dpt/add-queue";
+import { Dpt, DptStatus, Kelas } from "@/app/generated/prisma";
 import { DataTable } from "@/components/data-table/data-table";
-import { DataTableSortList } from "@/components/data-table/data-table-sort-list";
 import { DataTableToolbar } from "@/components/data-table/data-table-toolbar";
 import StatusBadge from "@/components/status/status-badge";
 import { ActionButton } from "@/components/ui/action-button";
@@ -75,11 +75,6 @@ export default function DptTable({ kelasList, dptList }: DptTableProps) {
                 size: 32,
             },
             {
-                id: "id",
-                accessorKey: "id",
-                header: "ID",
-            },
-            {
                 id: "name",
                 accessorKey: "name",
                 header: "Nama",
@@ -89,7 +84,20 @@ export default function DptTable({ kelasList, dptList }: DptTableProps) {
                     variant: "text",
                 },
                 enableColumnFilter: true,
+                cell: ({ row }) => {
+                    const dpt = row.original;
+
+                    return (
+                        <div className="flex flex-col">
+                            <span className="font-medium">{dpt.name}</span>
+                            <span className="text-xs text-muted-foreground">
+                                {dpt.id}
+                            </span>
+                        </div>
+                    );
+                },
             },
+
             {
                 id: "kelasId",
                 accessorKey: "kelasId",
@@ -125,7 +133,6 @@ export default function DptTable({ kelasList, dptList }: DptTableProps) {
                 },
                 enableColumnFilter: true,
                 enableSorting: true,
-                 
             },
             {
                 id: "actions",
@@ -133,23 +140,28 @@ export default function DptTable({ kelasList, dptList }: DptTableProps) {
                 cell: ({ row }) => {
                     const current = row.original;
 
-                    // ✅ useClientAction hook at top-level
-                    const { run: runAddToAntrian, loading } = useClientAction(
-                        addToAntrian,
+                    const { run: runaddQueue, loading } = useClientAction(
+                        addQueue,
                         {
                             successMessage:
                                 "DPT added to Antrian successfully!",
                             errorMessage: "Failed to add to Antrian",
                         }
                     );
-                    return (
+                    return current.status === DptStatus.BELUM_MEMILIH ? (
                         <ActionButton
-                            isLoading={loading} 
+                            isLoading={loading}
                             loadingText="Adding"
-                            onClick={() => runAddToAntrian({ id: Number(current.id) })} 
+                            onClick={() =>
+                                runaddQueue({ id: Number(current.id) })
+                            }
                         >
                             Add to Antrian
                         </ActionButton>
+                    ) : (
+                        <span className="text-muted-foreground">
+                            Already in Antrian
+                        </span>
                     );
                 },
             },
@@ -175,19 +187,7 @@ export default function DptTable({ kelasList, dptList }: DptTableProps) {
     return (
         <div className="space-y-6">
             {" "}
-            <DataTable
-                table={table}
-                // actionBar={
-                //     <Button
-                //         onClick={handleAddToAntrian}
-                //         disabled={selectedCount === 0}
-                //         className="bg-blue-600 text-white hover:bg-blue-700"
-                //     >
-                //         {" "}
-                //         Add to Antrian ({selectedCount}){" "}
-                //     </Button>
-                // }
-            >
+            <DataTable table={table}>
                 <DataTableToolbar table={table}>
                     <Button
                         variant="outline"
@@ -196,7 +196,6 @@ export default function DptTable({ kelasList, dptList }: DptTableProps) {
                             console.log("Navigate to Add DPT");
                         }}
                     >
-            
                         <IconUserPlus className="text-muted-foreground" /> New
                         DPT
                     </Button>

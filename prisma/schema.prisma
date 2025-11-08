@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Dpt {
-  id      BigInt    @id
+  id      Int    @id
   name    String
   status  DptStatus @default(BELUM_MEMILIH)
   kelasId Int
@@ -18,6 +18,8 @@ model Dpt {
   kelas     Kelas      @relation(fields: [kelasId], references: [id])
   bilik     Bilik?     @relation("BilikCurrentDpt")
   perolehan Perolehan?
+
+  updatedAt DateTime @updatedAt @default(now())
 }
 
 enum DptStatus {
@@ -48,7 +50,7 @@ model Paslon {
 model Bilik {
   id           Int     @id
   name         String
-  currentDptId BigInt? @unique
+  currentDptId Int? @unique
 
   // Relations
   currentDpt Dpt?        @relation("BilikCurrentDpt", fields: [currentDptId], references: [id])
@@ -57,7 +59,7 @@ model Bilik {
 
 model Perolehan {
   id       Int    @id
-  dptId    BigInt @unique
+  dptId    Int @unique
   bilikId  Int
   paslonId Int
 

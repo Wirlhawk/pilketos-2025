@@ -29,8 +29,9 @@ export function NavMain({
             <SidebarGroupContent className="flex flex-col gap-2">
                 <SidebarMenu>
                     {items.map((item) => (
-                        <SidebarMenuItem key={item.title}>
+                        <SidebarMenuItem key={item.title} >
                             <SidebarMenuButton
+                                size="lg"
                                 tooltip={item.title}
                                 isActive={item.url === currentPath}
                                 asChild
@@ -43,15 +44,7 @@ export function NavMain({
                         </SidebarMenuItem>
                     ))}
                 </SidebarMenu>
-                {/* <SidebarMenuItem key="result">
-                    <SidebarMenuButton tooltip="Vote Result">
-                        <IconChartBar />
-                        <span>Vote Result</span>
-                    </SidebarMenuButton>
-                    <SidebarMenuBadge>
-                        <IconLock width="16"/>
-                    </SidebarMenuBadge>
-                </SidebarMenuItem> */}
+
             </SidebarGroupContent>
         </SidebarGroup>
     );
