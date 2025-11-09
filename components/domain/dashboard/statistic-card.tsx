@@ -1,5 +1,5 @@
 import { IconUser } from "@tabler/icons-react";
-import { Badge } from "../ui/badge";
+import { Badge } from "../../ui/badge";
 import {
     Card,
     CardAction,
@@ -7,7 +7,7 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from "../ui/card";
+} from "../../ui/card";
 
 interface StatisticCardProps {
     title: string;

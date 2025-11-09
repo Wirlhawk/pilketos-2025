@@ -7,6 +7,7 @@ CREATE TABLE "Dpt" (
     "name" TEXT NOT NULL,
     "status" "DptStatus" NOT NULL DEFAULT 'BELUM_MEMILIH',
     "kelasId" INTEGER NOT NULL,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Dpt_pkey" PRIMARY KEY ("id")
 );

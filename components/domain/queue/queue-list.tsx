@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import { enterBilik } from "@/action/bilik/enter-bilik";
+import { enterBilik } from "@/action/bilik/enter";
 import { removeQueue } from "@/action/dpt/remove-queue";
 import { Bilik, Dpt, Kelas } from "@/app/generated/prisma";
 import { ActionButton } from "@/components/ui/action-button";
@@ -42,6 +42,7 @@ import {
 import { useClientAction } from "@/hooks/use-client-action";
 import { IconUsersGroup } from "@tabler/icons-react";
 import { ChevronDownIcon, UserPlus, UserX } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 
 export default function QueueList({
@@ -56,7 +57,7 @@ export default function QueueList({
     );
 
     return (
-        <Card className="col-span-3">
+        <Card className="col-span-3 h-fit">
             <CardHeader>
                 <CardTitle className="text-xl font-semibold tabular-nums @[250px]/card:text-2xl">
                     Queue List
@@ -114,19 +115,30 @@ function DptItemList({
     dptList: (Dpt & { kelas: Kelas })[];
     bilikList: (Bilik & { currentDpt: (Dpt & { kelas: Kelas }) | null })[];
 }) {
-    return dptList.map((d, index) => (
-        <div key={index}>
-            <DptItem
-                dptId={d.id}
-                key={index}
-                name={d.name}
-                kelas={d.kelas.name}
-                number={index + 1}
-                bilikList={bilikList}
-            />
-            {index !== dptList.length - 1 && <ItemSeparator key={d.id} />}
-        </div>
-    ));
+    return (
+        <AnimatePresence initial={true}>
+            {dptList.map((d, index) => (
+                <motion.div
+                    key={d.id}
+                    layout
+                    initial={{ opacity: 0, y: -12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, x: 12 }} 
+                    transition={{ duration: 0.18, ease: "easeOut" }}
+                >
+                    <DptItem
+                        dptId={d.id}
+                        name={d.name}
+                        kelas={d.kelas.name}
+                        number={index + 1}
+                        bilikList={bilikList}
+                    />
+
+                    {index !== dptList.length - 1 && <ItemSeparator />}
+                </motion.div>
+            ))}
+        </AnimatePresence>
+    );
 }
 
 function DptItem({
@@ -136,7 +148,7 @@ function DptItem({
     kelas,
     bilikList,
 }: {
-    dptId: number;
+    dptId: bigint;
     number: number;
     name: string;
     kelas: string;
@@ -228,3 +240,4 @@ function DptItem({
         </Item>
     );
 }
+

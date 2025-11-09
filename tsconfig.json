@@ -30,7 +30,8 @@
         ".next/dev/types/**/*.ts",
         "**/*.mts",
         "prisma/seed.js",
-        "app/(dashboard)/layout.tsc"
+        "app/(dashboard)/layout.tsc",
+        "app/(bilik)/layout.tsx"
     ],
     "exclude": ["node_modules"]
 }

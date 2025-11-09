@@ -1,6 +1,5 @@
 import { Bilik, Dpt, Kelas } from "@/app/generated/prisma";
-import BilikCard from "@/components/cards/bilik-card";
-import React from "react";
+import BilikCard from "@/components/domain/queue/bilik-card";
 
 export default function BilikList({
     bilikList,

@@ -1,11 +1,11 @@
 "use client";
-import { exitBilik } from "@/action/bilik/exit-bilik";
+import { exitBilik } from "@/action/bilik/exit";
 import { Bilik, Dpt, Kelas } from "@/app/generated/prisma";
 import { useClientAction } from "@/hooks/use-client-action";
 import { IconCircleFilled, IconUser, IconXboxX } from "@tabler/icons-react";
 import { UserX } from "lucide-react";
-import { ActionButton } from "../ui/action-button";
-import { Badge } from "../ui/badge";
+import { ActionButton } from "../../ui/action-button";
+import { Badge } from "../../ui/badge";
 import {
     Card,
     CardAction,
@@ -14,14 +14,14 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from "../ui/card";
+} from "../../ui/card";
 import {
     Item,
     ItemContent,
     ItemDescription,
     ItemMedia,
     ItemTitle,
-} from "../ui/item";
+} from "../../ui/item";
 
 export default function BilikCard({
     bilik,
@@ -38,8 +38,8 @@ export default function BilikCard({
         <Card
             className={`@container/car to-card dark:bg-card bg-linear-to-t shadow-xs border-2 ${
                 isInUse
-                    ? "dark:from-green-500/10 from-green-500/15 "
-                    : "dark:from-muted-foreground/10 from-muted-foreground-15 "
+                    ? "dark:from-green-500/15 from-green-500/15 "
+                    : "dark:from-muted-foreground/15 from-muted-foreground-15 "
             }`}
         >
             <CardHeader>
@@ -65,7 +65,7 @@ export default function BilikCard({
                         isLoading={loading}
                         onClick={() =>
                             runExitBilik({
-                                currentDptId: bilik.currentDptId ?? 0,
+                                currentDptId: bilik.currentDptId!,
                                 bilikId: bilik.id,
                             })
                         }

@@ -1,4 +1,4 @@
-import StatisticCard from "@/components/cards/statistic-card";
+import StatisticCard from "@/components/domain/dashboard/statistic-card";
 
 export function SectionCards() {
     return (

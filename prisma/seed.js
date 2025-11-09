@@ -13,7 +13,7 @@ async function main() {
     console.log("Kelas seeded successfully!");
 
     // Seed Dpt
-    const dptSheet = workbook.Sheets["dpt_dummy"];
+    const dptSheet = workbook.Sheets["dpt"];
     const dptData = XLSX.utils.sheet_to_json(dptSheet);
     await prisma.dpt.createMany({
         data: dptData.map((dpt) => ({

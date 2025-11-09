@@ -1,15 +1,18 @@
 import { SiteHeader } from "@/components/sidebar/nav-header";
 import { AppSidebar } from "@/components/sidebar/sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { ReactNode } from "react";
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default function DashboardLayout({
+    children,
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
     return (
         <SidebarProvider
             style={
                 {
-                    "--sidebar-width": "calc(var(--spacing) * 55)",
-                    "--header-height": "calc(var(--spacing) * 12)",
+                    "--sidebar-width": "calc(var(--spacing) * 72)",
+                    "--header-height": "calc(var(--spacing) * 14)",
                 } as React.CSSProperties
             }
         >

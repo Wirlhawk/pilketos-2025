@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/select";
 import { Bilik } from "@/app/generated/prisma";
 
-import { bilikLogin } from "@/action/bilik/bilik-login";
+import { bilikLogin } from "@/action/bilik/login";
 
 const formSchema = z.object({
     id: z.number().min(1, "Silahkan pilih bilik"),

@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Dpt {
-  id      Int    @id
+  id      BigInt    @id
   name    String
   status  DptStatus @default(BELUM_MEMILIH)
   kelasId Int
@@ -19,7 +19,9 @@ model Dpt {
   bilik     Bilik?     @relation("BilikCurrentDpt")
   perolehan Perolehan?
 
-  updatedAt DateTime @updatedAt @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  activityLogs ActivityLog[]
 }
 
 enum DptStatus {
@@ -50,16 +52,18 @@ model Paslon {
 model Bilik {
   id           Int     @id
   name         String
-  currentDptId Int? @unique
+  currentDptId BigInt? @unique
 
   // Relations
   currentDpt Dpt?        @relation("BilikCurrentDpt", fields: [currentDptId], references: [id])
   perolehan  Perolehan[]
+
+  activityLogs ActivityLog[]
 }
 
 model Perolehan {
   id       Int    @id
-  dptId    Int @unique
+  dptId    BigInt @unique
   bilikId  Int
   paslonId Int
 
@@ -67,4 +71,25 @@ model Perolehan {
   dpt    Dpt    @relation(fields: [dptId], references: [id])
   bilik  Bilik  @relation(fields: [bilikId], references: [id])
   paslon Paslon @relation(fields: [paslonId], references: [id])
+}
+
+model ActivityLog {
+  id        Int          @id @default(autoincrement())
+  type      ActivityType
+  message   String
+  dptId     BigInt?
+  bilikId   Int?
+  createdAt DateTime     @default(now())
+
+  dpt   Dpt?   @relation(fields: [dptId], references: [id])
+  bilik Bilik? @relation(fields: [bilikId], references: [id])
+}
+
+enum ActivityType {
+  ADD_QUEUE
+  REMOVE_QUEUE
+  ENTER_BILIK
+  REMOVE_BILIK
+  COMPLETE_VOTE
+  SYSTEM
 }

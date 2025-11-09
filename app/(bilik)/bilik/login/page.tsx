@@ -1,4 +1,4 @@
-import { getAllBilik } from "@/action/bilik/get-all-bilik";
+import { getAllBilik } from "@/action/bilik/get-all";
 import { BilikLoginForm } from "@/components/domain/bilik/form/bilik-login-form";
 
 export default async function BilikLogin() {

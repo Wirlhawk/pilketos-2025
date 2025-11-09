@@ -152,11 +152,10 @@ export default function DptTable({ kelasList, dptList }: DptTableProps) {
                         <ActionButton
                             isLoading={loading}
                             loadingText="Adding"
-                            onClick={() =>
-                                runaddQueue({ id: Number(current.id) })
-                            }
+                            onClick={() => runaddQueue({ id: current.id })}
+                            size="sm"
                         >
-                            Add to Antrian
+                            <IconUserPlus className="mr-1" /> Add to Antrian
                         </ActionButton>
                     ) : (
                         <span className="text-muted-foreground">
@@ -187,7 +186,11 @@ export default function DptTable({ kelasList, dptList }: DptTableProps) {
     return (
         <div className="space-y-6">
             {" "}
-            <DataTable table={table}>
+            <DataTable
+                table={table}
+                className="[&_th]:bg-muted! [&_tbody tr:hover]:bg-muted/60!
+    [&_tbody tr]:transition-colors"
+            >
                 <DataTableToolbar table={table}>
                     <Button
                         variant="outline"
