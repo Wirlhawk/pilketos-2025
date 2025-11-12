@@ -1,7 +1,6 @@
 import XLSX from "xlsx";
-import { PrismaClient } from '../app/generated/prisma/index.js';
+import { PrismaClient } from "../app/generated/prisma/index.js";
 const prisma = new PrismaClient();
-
 
 async function main() {
     const workbook = XLSX.readFile("./seeds.xlsx");
@@ -35,6 +34,13 @@ async function main() {
     const bilikData = XLSX.utils.sheet_to_json(bilikSheet);
     await prisma.bilik.createMany({ data: bilikData });
     console.log("Bilik seeded successfully!");
+
+    const key = "teamleaderbeban";
+    await prisma.status_Pemilihan.create({
+        data: {
+            authorization_key: key,
+        },
+    });
 }
 
 main()

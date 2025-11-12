@@ -92,3 +92,10 @@ enum ActivityType {
   COMPLETE_VOTE
   SYSTEM
 }
+
+model Status_Pemilihan {
+  id                Int     @id @unique @default(1)
+  done              Boolean @default(false)
+  isOpened          Boolean @default(false)
+  authorization_key String
+}

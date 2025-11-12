@@ -33,7 +33,8 @@ export default function BilikWelcomeCard({
             </div>
             <CardContent>
                 <h1 className="font-swung text-9xl text-center mb-5 ">
-                    SIAPA PEMIMPIN <br/>PILIHANMU?
+                    SIAPA PEMIMPIN <br />
+                    PILIHANMU?
                 </h1>
 
                 {/* <h1 className="font-swung text-9xl text-center mb-5 ">
@@ -45,7 +46,7 @@ export default function BilikWelcomeCard({
                     2025/2026
                 </h2>
                 <h2 className="text-center font-semibold text-xl ">
-                    Klik tombol <b>Mulai Memilih</b> untuk lanjut lanjut
+                    Klik tombol &quot;Mulai Memilih&quot; untuk lanjut
                 </h2>
             </CardContent>
             <CardFooter>

@@ -3,7 +3,7 @@ import { getAllBilik } from "@/action/bilik/get-all";
 import { getAllDpt } from "@/action/dpt/get-all";
 import { DptStatus } from "@/app/generated/prisma";
 import ActivtyList from "@/components/domain/activity/activity-list";
-import BilikList from "@/components/domain/bilik/bilik-list";
+import BilikList from "@/components/domain/queue/bilik-list";
 import QueueList from "@/components/domain/queue/queue-list";
 
 export default async function Page() {
