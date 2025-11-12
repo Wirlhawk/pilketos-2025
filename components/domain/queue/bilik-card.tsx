@@ -32,6 +32,7 @@ export default function BilikCard({
     const { run: runExitBilik, loading } = useClientAction(exitBilik, {
         successMessage: "DPT exit Bilik Successfully!",
         errorMessage: "Failed to exit Bilik",
+        
     });
 
     return (

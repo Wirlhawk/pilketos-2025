@@ -1,6 +1,6 @@
 import { getAllDpt } from "@/action/dpt/get-all";
 import { getDptStats } from "@/action/dpt/get-stats";
-import { getAllKelas } from "@/action/kelas/get-all-kelas";
+import { getAllKelas } from "@/action/kelas/get-all";
 import DptStats from "@/components/domain/dpt/dpt-stats";
 import DptTable from "@/components/domain/dpt/dpt-table";
 

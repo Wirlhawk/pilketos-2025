@@ -66,6 +66,9 @@
   --shadow-opacity: var(--shadow-opacity);
   --color-shadow-color: var(--shadow-color);
   --color-destructive-foreground: var(--destructive-foreground);
+
+  /* custom */
+    --font-swung: 'SwungNote', cursive;
 }
 
 :root {
@@ -160,6 +163,61 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+.neo {
+    --background: oklch(0.9741 0.0154 306.4150);
+      --foreground: oklch(0 0 0);
+      --card: oklch(0.9741 0.0154 306.4150);
+      --card-foreground: oklch(0 0 0);
+      --popover: oklch(0.9741 0.0154 306.4150);
+      --popover-foreground: oklch(0 0 0);
+      --primary: oklch(0.6676 0.2194 25.4220);
+      --primary-foreground: oklch(1.0000 0 0);
+      --secondary: oklch(0.5220 0.2662 266.4416);
+      --secondary-foreground: oklch(1.0000 0 0);
+      --muted: oklch(0.9551 0 0);
+      --muted-foreground: oklch(0.4676 0 0);
+      --accent: oklch(0.5220 0.2662 266.4416);
+      --accent-foreground: oklch(1.0000 0 0);
+      --destructive: oklch(0.5771 0.2152 27.3250);
+      --destructive-foreground: oklch(1.0000 0 0);
+      --border: oklch(0 0 0);
+      --input: oklch(0.9741 0.0154 306.4150);
+      --ring: oklch(0 0 0);
+      --chart-1: oklch(0.5771 0.2152 27.3250);
+      --chart-2: oklch(0.6304 0.1800 259.9560);
+      --chart-3: oklch(0.8075 0.1537 75.1984);
+      --chart-4: oklch(0.4676 0 0);
+      --chart-5: oklch(0.6475 0.1603 148.4955);
+      --sidebar: oklch(0.9741 0.0154 306.4150);
+      --sidebar-foreground: oklch(0 0 0);
+      --sidebar-primary: oklch(0.5771 0.2152 27.3250);
+      --sidebar-primary-foreground: oklch(0.6676 0.2194 25.4220);
+      --sidebar-accent: oklch(0.8868 0.1822 95.3305);
+      --sidebar-accent-foreground: oklch(0 0 0);
+      --sidebar-border: oklch(0 0 0);
+      --sidebar-ring: oklch(0 0 0);
+      --font-sans: Inter, ui-sans-serif, sans-serif, system-ui;
+      --font-serif: Abhaya Libre, ui-serif, serif;
+      --font-mono: Anonymous Pro, ui-monospace, monospace;
+      --radius: 1.5rem;
+      --shadow-x: 2.5px;
+      --shadow-y: 2.5px;
+      --shadow-blur: 0px;
+      --shadow-spread: 0px;
+      --shadow-opacity: 1;
+      --shadow-color: #000000;
+      --shadow-2xs: 3px 3px 0px 0px hsl(0 0% 0% / 0.50);
+      --shadow-xs: 3px 3px 0px 0px hsl(0 0% 0% / 0.50);
+      --shadow-sm: 3px 3px 0px 0px hsl(0 0% 0% / 1.00), 3px 1px 2px -1px hsl(0 0% 0% / 1.00);
+      --shadow: 3px 3px 0px 0px hsl(0 0% 0% / 1.00), 3px 1px 2px -1px hsl(0 0% 0% / 1.00);
+      --shadow-md: 3px 3px 0px 0px hsl(0 0% 0% / 1.00), 3px 2px 4px -1px hsl(0 0% 0% / 1.00);
+      --shadow-lg: 3px 3px 0px 0px hsl(0 0% 0% / 1.00), 3px 4px 6px -1px hsl(0 0% 0% / 1.00);
+      --shadow-xl: 3px 3px 0px 0px hsl(0 0% 0% / 1.00), 3px 8px 10px -1px hsl(0 0% 0% / 1.00);
+      --shadow-2xl: 3px 3px 0px 0px hsl(0 0% 0% / 2.50);
+      --tracking-normal: 0.05em;
+      --spacing: 0.25rem;
+    }
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -170,3 +228,5 @@
     letter-spacing: var(--tracking-normal);
   }
 }
+
+@custom-variant neo (&:where(.neo *));

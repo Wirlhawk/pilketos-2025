@@ -35,8 +35,7 @@ const formSchema = z.object({
     id: z.number().min(1, "Silahkan pilih bilik"),
 });
 
-export function BilikLoginForm({ biliks }: { biliks: Bilik[] }) {
-    console.log(biliks);
+export function BilikLoginForm({ bilikList }: { bilikList: Bilik[] }) {
 
     const form = useForm({
         defaultValues: {
@@ -58,7 +57,7 @@ export function BilikLoginForm({ biliks }: { biliks: Bilik[] }) {
     });
 
     return (
-        <Card className="w-full sm:max-w-md">
+        <Card className="w-full sm:max-w-md z-10 neo">
             <CardHeader>
                 <CardTitle>Login Bilik</CardTitle>
                 <CardDescription>
@@ -115,7 +114,7 @@ export function BilikLoginForm({ biliks }: { biliks: Bilik[] }) {
                                             </SelectTrigger>
 
                                             <SelectContent position="item-aligned">
-                                                {biliks.map((bilik) => (
+                                                {bilikList.map((bilik) => (
                                                     <SelectItem
                                                         key={bilik.id}
                                                         value={String(bilik.id)}

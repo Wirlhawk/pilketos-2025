@@ -62,8 +62,7 @@ model Bilik {
 }
 
 model Perolehan {
-  id       Int    @id
-  dptId    BigInt @unique
+  dptId    BigInt @unique @id
   bilikId  Int
   paslonId Int
 

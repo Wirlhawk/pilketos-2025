@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import localFont from "next/font/local";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
+const poppins = Poppins({
+    variable: "--font-poppins",
     subsets: ["latin"],
+    weight: ["400", "500", "600", "700"], 
 });
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
+const swungNote = localFont({
+    src: "../public/fonts/SwungNote.otf",
+    variable: "--font-swung",
 });
 
 export const metadata: Metadata = {
@@ -28,7 +30,7 @@ export default function RootLayout({
         <html lang="en">
             <NuqsAdapter>
                 <body
-                    className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
+                    className={`${swungNote.variable} ${poppins.variable} antialiased dark`}
                 >
                     {children}
                     <Toaster position="top-right" />

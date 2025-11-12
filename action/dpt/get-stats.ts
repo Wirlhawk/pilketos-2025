@@ -3,7 +3,6 @@
 import prisma from "@/lib/db/prisma";
 import { safeAction } from "../utils/safe-action";
 import { DptStatus } from "@/app/generated/prisma";
-import { revalidatePath } from "next/cache";
 
 export const getDptStats = safeAction(async () => {
     const grouped = await prisma.dpt.groupBy({
