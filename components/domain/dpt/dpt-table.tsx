@@ -17,6 +17,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs";
 import { useEffect, useMemo } from "react";
 
+export const dynamic = "force-dynamic";
+
+
 interface DptTableProps {
     kelasList: Kelas[];
     dptList: (Dpt & { kelas: Kelas })[];

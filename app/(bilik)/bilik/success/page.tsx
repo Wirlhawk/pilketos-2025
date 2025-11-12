@@ -1,17 +1,11 @@
-"use client";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { IconArrowBack } from "@tabler/icons-react";
-import { CheckCircle, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 
-export default function SuccessPage({
-    searchParams,
-}: {
-    searchParams: { name?: string };
-}) {
-    const name = searchParams.name;
+export default function SuccessPage(
+) {
 
     return (
         <div className="h-screen flex items-center justify-center">
@@ -28,7 +22,7 @@ export default function SuccessPage({
                     </h1> */}
 
                     <h2 className="text-center font-semibold text-xl ">
-                        Terimakasih {name} atas partisipasinya
+                        Terimakasih atas partisipasinya
                     </h2>
                     <h2 className="text-center font-semibold text-xl ">
                         Klik tombol &quot;Selesai&quot; untuk kembali
